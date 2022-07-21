@@ -8,8 +8,8 @@ const TextAll =styled.div`
     color : #fff;
     display : inline-block;
     text-aling : row;
-    padding-right : 40px
-`   
+    padding-right : 40px;
+`
 
 const UserImg = styled.div`
     display : inline-block;
