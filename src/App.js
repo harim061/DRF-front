@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import styled, { createGlobalStyle } from 'styled-components';
+import MainTemplate from './components/MainTemplate';
+import HeaderTemplate from './components/HeaderTemplate';
+import FrameTemplate from './components/FrameTemplate';
+import ImageTemplate from './components/ImageTemplate';
+import MenuBarTemplate from './components/MenuBarTemplate';
+
+
+const GlobalStyle = createGlobalStyle`
+body{
+	background: 
+	#F5F5F5;
+}
+`;
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<>
+			<GlobalStyle />
+			<HeaderTemplate></HeaderTemplate>
+			
+			<MenuBarTemplate></MenuBarTemplate>
+			
+			<MainTemplate></MainTemplate>
+			<FrameTemplate></FrameTemplate>
+			<ImageTemplate></ImageTemplate>
+			<FrameTemplate></FrameTemplate>
+			<MainTemplate></MainTemplate>
+
+		</>
+	);
 }
 
 export default App;
