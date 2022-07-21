@@ -1,7 +1,8 @@
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
-import MainTemplate from './components/MainTemplate';
 import HeaderTemplate from './components/HeaderTemplate';
+import MainTemplateLeft from './components/MainTemplateLeft';
+import MainTemplateRight from './components/MainTemplateRight';
 import FrameTemplate from './components/FrameTemplate';
 import ImageTemplate from './components/ImageTemplate';
 import MenuBarTemplate from './components/MenuBarTemplate';
@@ -17,19 +18,22 @@ body{
 function App() {
 	return (
 		<>
+
 			<GlobalStyle />
 			<HeaderTemplate></HeaderTemplate>
 			
 			<MenuBarTemplate></MenuBarTemplate>
 			
-			<MainTemplate></MainTemplate>
+			<MainTemplateLeft></MainTemplateLeft>
 			<FrameTemplate></FrameTemplate>
 			<ImageTemplate></ImageTemplate>
 			<FrameTemplate></FrameTemplate>
-			<MainTemplate></MainTemplate>
+			<MainTemplateRight></MainTemplateRight>
 
 		</>
+	
 	);
+	
 }
 
 export default App;

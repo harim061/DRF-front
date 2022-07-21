@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from './flim.png';
+import image from './flim.png';
 
 const HeaderTemplateBlock = styled.div`
 	width: 1440px;
@@ -19,8 +19,14 @@ const ButtonA = styled.button`
 	margin-left : 40px;
 	border : 0px;
 	display : block;
-	float : right;
 	font-weight: 700;
+`
+
+const BackgroundImage = styled.div`
+	width : 1440px;
+	height : 160px;
+	text-align :center;
+	
 `
 
 function HeaderTemplate({ children }) {
@@ -31,7 +37,10 @@ function HeaderTemplate({ children }) {
 				<ButtonA>LOGIN</ButtonA>
 				<ButtonA>JOIN</ButtonA>
 			</HeaderTemplateBlock>
-			<img src={logo} style={{margin : 0}}/>
+			<BackgroundImage style={{backgroundImage : `url(${image})`}}>
+				<p style={{color : '#ff0',fontSize:'42px',fontWeight:'700', margin : '0px',paddingTop:'30px'}}>THE FLIM</p>
+				<p style={{color: '#ffffff', fontSize:'20px',fontWeight:'700',marginTop:'14px'}}>of your lilfe</p>
+			</BackgroundImage>
 		</>
 	
 	
