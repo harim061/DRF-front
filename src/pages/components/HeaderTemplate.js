@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import image from './film.png';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const HeaderTemplateBlock = styled.div`
 	width: 1440px;
