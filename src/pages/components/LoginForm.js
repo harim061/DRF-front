@@ -9,7 +9,7 @@ const LoginForm= ()=>  {
     const { register, handleSubmit} = useForm();
     const navigate = useNavigate();
     const goUpload =() => {
-        navigate("/mypage");
+        navigate("/mypage"); 
     }
     return (
         <>
