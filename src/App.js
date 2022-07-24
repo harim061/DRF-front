@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { Route, Routes } from "react-router-dom";
 import UpLoadMain from './pages/UpLoadMain';
 import LoginUs from './pages/LoginUs'
-import CommentMain from './pages/CommentMain'
+
 
 const GlobalStyle = createGlobalStyle`
 body{

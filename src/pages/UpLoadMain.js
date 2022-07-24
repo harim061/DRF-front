@@ -7,6 +7,10 @@ import FrameTemplate from './components/FrameTemplate';
 import ImageTemplate from './components/ImageTemplate';
 import MenuBarTemplate from './components/MenuBarTemplate';
 import HeaderTemplateLogOut from './components/HeaderTemplateLogOut';
+import Footer from './components/Footer'
+import CommentHeader from './components/CommentHeader';
+import CommentTemplate from './components/CommentTemplate';
+
 const GlobalStyle = createGlobalStyle`
 body{
 	background: 
@@ -235,6 +239,8 @@ function UpLoadMain() {
 			<MainTemplateLeft></MainTemplateLeft>
 			<FrameTemplate></FrameTemplate>
 			<ImageTemplate>
+
+
 				<TitleInput>
 					<form onSubmit={PostSubmit}>
 						<input
@@ -259,10 +265,37 @@ function UpLoadMain() {
 					})}
 				</TitleInput>
 
+				<CommentTemplate>
+					<CommentHeader />
+					<CommentAdd>
+						<img className="profile" src="./image/profile.svg"></img>
+						<form onSubmit={CommentSubmit}>
+							<input
+								placeholder="댓글 작성하기"
+								value={newComment}
+								onChange={(e) => setNewComment(e.target.value)}
+							/>
+							<button></button>
+						</form>
+					</CommentAdd>
+					{comments.map((comment) => {
+						return (
+							<CommentItemBlock>
+								<img className="profile" src="./image/profile.svg"></img>
+								<CommentText>
+									<p>{comment.content}</p>
+								</CommentText>
+								<img className="repltbtn" src="./image/답글버튼.png"></img>
+							</CommentItemBlock>
+						);
+					})}
+				</CommentTemplate>
+
 				
 			</ImageTemplate>
 			<FrameTemplate></FrameTemplate>
 			<MainTemplateRight></MainTemplateRight>
+			<Footer></Footer>
 		</>
 	);
 }

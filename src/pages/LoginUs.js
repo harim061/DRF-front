@@ -5,7 +5,7 @@ import MenuBarTemplate from './components/MenuBarTemplate';
 import image from './loginBG.png';
 import logLogo from './loginLogo.png';
 import LoginForm from './components/LoginForm';
-
+import Footer from './components/Footer'
 
 const GlobalStyle = createGlobalStyle`
 body{
@@ -36,7 +36,7 @@ function LoginUs(){
             <img src={logLogo} style={{marginTop:'309px',marginLeft:'370px',marginRight:'370px'}}></img> 
             <LoginForm></LoginForm>
             </BackgroundImage>
-
+			<Footer></Footer>
         </>
     );
 };
