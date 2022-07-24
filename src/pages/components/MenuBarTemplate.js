@@ -7,24 +7,22 @@ const Menu = styled.div`
 	background-color: #000;
 	display: flex;
 	position: relative;
-
 `;
 
 const Blank = styled.div`
-	width : 510px;
-	height : 80px;
-`
+	width: 510px;
+	height: 80px;
+`;
 const ButtonB = styled.button`
-	background-color : #000;
-	margin-right : 40px;
-	border : 0px;
+	background-color: #000;
+	margin-right: 40px;
+	border: 0px;
 	font-weight: 700;
 	font-size: 24px;
 	line-height: 32px;
-	color : #fff;
-	display : inline-block;
+	color: #fff;
+	display: inline-block;
 `;
-
 
 function MenuBarTemplate({ children }) {
 	return (
@@ -37,10 +35,7 @@ function MenuBarTemplate({ children }) {
 				<ButtonB>MARK</ButtonB>
 			</Menu>
 		</>
-	
-	
-	)
+	);
 }
-
 
 export default MenuBarTemplate;
