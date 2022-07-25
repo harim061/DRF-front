@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const CommentTemplateBlock = styled.div`
 	width: 640px;
-	height: 700px;
+	height: 100%;
 	background-color: #ffffff;
-	margin-top: 1200px;
+	margin-top: 570px;
 	margin-bottom: 0;
 	flex-direction: column;
 	display: flex;

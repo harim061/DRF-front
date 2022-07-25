@@ -8,8 +8,10 @@ import ImageTemplate from './components/ImageTemplate';
 import MenuBarTemplate from './components/MenuBarTemplate';
 import HeaderTemplateLogOut from './components/HeaderTemplateLogOut';
 import Footer from './components/Footer';
+import CommentHeader from './components/CommentHeader';
+import CommentTemplate from './components/CommentTemplate';
 import { useNavigate } from 'react-router-dom';
-import Uploader from './components/Uploader';
+import { useLocation } from 'react-router-dom';
 const GlobalStyle = createGlobalStyle`
 body{
 	background: 
@@ -26,35 +28,22 @@ const TitleInput = styled.div`
 	line-height: 32px;
 	color: #e0d5cd;
 	box-sizing: border-box;
-	.Titleinputform {
-		color: orange;
-		margin-left: 5px;
-		margin-bottom: 3px;
+	h1 {
+		margin-top: 3px;
+		margin-bottom: 20px;
 	}
 	.upload {
-		background: url('./image/inputbackground.png');
+		background: red;
 		width: 646px;
 		height: 450px;
 		margin-left: 0;
-		margin-top: 8px;
+		margin-top: 0;
+		margin-bottom: 0px;
 	}
-	.uploadbtn {
-		background: url('./image/uploadbtn.png') no-repeat;
-		width: 100px;
-		height: 100px;
-		border: none;
-		margin-top: 5%;
-		margin-left: 42%;
-		cursor: pointer;
-	}
-	.picturebtn {
-		width: 150px;
-		height: 130px;
-		border: none;
-		background: url('./image/inputimageupload.png') no-repeat;
-		margin-top: 27%;
-		margin-left: 37%;
-		cursor: pointer;
+	.back {
+		width: 646px;
+		height: 50px;
+		background: #000;
 	}
 `;
 const CommentAdd = styled.div`
@@ -112,18 +101,35 @@ const CommentItemBlock = styled.div`
 		margin-top: 5px;
 	}
 `;
+const CommentText = styled.div`
+	font-size: 14px;
+	border: 1px solid #e5e7eb;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	color: black;
+`;
 
-function UpLoadMain() {
+const CommentPage = () => {
 	// 받아온 데이터 저장하는 state
+	const location = useLocation();
+	const id = location.state.postId;
+
 	const [posts, setPosts] = useState([]);
 	const [singlePost, setSinglePost] = useState({});
 	const [comments, setComments] = useState([]);
+
 	// input에 입력된 게시글과 댓글
 	const [newPost, setNewPost] = useState('');
+	const [newComment, setNewComment] = useState('');
+
+	// 상세 조회하고자 하는 게시글의 id
 
 	// 새로고침 될 때 마다 실행됩니다.
 	useEffect(() => {
 		getPosts();
+		getSinglePost();
 	}, []);
 
 	// 전체 게시글 조회 함수
@@ -131,7 +137,7 @@ function UpLoadMain() {
 		const response = await axios
 			.get('https://dy6578.pythonanywhere.com/api/posts/')
 			.then((response) => {
-				// ?? (전체 게시글 저장)
+				// (전체 게시글 저장)
 				setPosts(response.data);
 			})
 			.catch((error) => {
@@ -139,48 +145,46 @@ function UpLoadMain() {
 			});
 	};
 
-	// 새로운 게시글 작성 함수
-	const PostSubmit = (e) => {
-		e.preventDefault();
-
-		// 아래 코드 중 .post("??", {})에서 { }도 채워주세요 !!
-		axios
-			.post('https://dy6578.pythonanywhere.com/api/posts/', {
-				title: '제 목',
-				author: 1,
-				content: newPost,
-			})
+	// 특정 게시글 조회
+	const getSinglePost = async () => {
+		const response = await axios
+			.get(`https://dy6578.pythonanywhere.com/api/posts/${id}`)
 			.then((response) => {
-				// ?? (게시글 불러오기)
-				getPosts();
+				//  (특정 게시글 저장)
+				setSinglePost(response.data);
+				// (댓글 저장)
+				setComments(response.data.comment);
 			})
 			.catch((error) => {
-				console.log('작성 실패');
+				console.log('글 하나 불러오기 실패');
 			});
-
-		// ???? (input 비우기)
-		setNewPost('');
 	};
 
 	// 새로운 댓글 작성 함수
+	const CommentSubmit = (e) => {
+		e.preventDefault();
 
-	// 게시글 삭제 함수
-	const onDelete = (id) => {
+		// 아래 코드 중 .post("????", { })에서 { }도 채워주세요 !!
 		axios
-			.delete(`https://dy6578.pythonanywhere.com/api/posts/${id}`)
-			.then((response) => {
-				// ???? (전체 게시글 불러오기)
-				getPosts(response.data);
+			.post('https://dy6578.pythonanywhere.com/api/comments/', {
+				post: id,
+				author: 1,
+				content: newComment,
 			})
-			.catch((error) => {
-				console.log('삭제 실패', error);
+			.then((response) => {
+				// ?? (게시글 불러오기)
+				// ?? (특정 게시글 불러오기)
+				getPosts();
+				getSinglePost();
+			})
+			.catch(function (error) {
+				console.log('댓글 작성 실패', error);
 			});
+
+		// ??? (input 비우기)
+		setNewComment('');
 	};
-	const navigate = useNavigate();
-	const goComment = (id) => {
-		var postId = id;
-		navigate(`/comment/${postId}`, { state: { postId: postId } });
-	};
+
 	return (
 		<>
 			<GlobalStyle />
@@ -190,38 +194,42 @@ function UpLoadMain() {
 			<FrameTemplate></FrameTemplate>
 			<ImageTemplate>
 				<TitleInput>
-					<form onSubmit={PostSubmit}>
-						<input
-							className="Titleinputform"
-							placeholder="새 게시글 작성하기 "
-							value={newPost}
-							onChange={(e) => setNewPost(e.target.value)}
-						/>
-						<button>작성</button>
-					</form>
-					<div className="upload">
-						<button className="picturebtn"></button>
-						<button className="uploadbtn"></button>
-					</div>
-					{posts.map((post) => {
+					<h1>{singlePost.content}</h1>
+					<div className="upload"></div>
+					<div className="back"></div>
+				</TitleInput>
+
+				<CommentTemplate>
+					<CommentHeader />
+					<CommentAdd>
+						<img className="profile" src="./image/profile.svg"></img>
+						<form onSubmit={CommentSubmit}>
+							<input
+								placeholder="댓글 작성하기"
+								value={newComment}
+								onChange={(e) => setNewComment(e.target.value)}
+							/>
+							<button></button>
+						</form>
+					</CommentAdd>
+					{comments.map((comment) => {
 						return (
-							<p
-								onClick={() => goComment(post.id)}
-								style={{ border: '1px solid red' }}
-							>
-								{post.content}
-								<button onClick={() => onDelete(post.id)}>삭제</button>
-							</p>
+							<CommentItemBlock>
+								<img className="profile" src="./image/profile.svg"></img>
+								<CommentText>
+									<p>{comment.content}</p>
+								</CommentText>
+								<img className="repltbtn" src="./image/답글버튼.png"></img>
+							</CommentItemBlock>
 						);
 					})}
-				</TitleInput>
-				<Uploader></Uploader>
+				</CommentTemplate>
 			</ImageTemplate>
 			<FrameTemplate></FrameTemplate>
 			<MainTemplateRight></MainTemplateRight>
 			<Footer></Footer>
 		</>
 	);
-}
+};
 
-export default UpLoadMain;
+export default CommentPage;
