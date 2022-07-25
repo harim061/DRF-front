@@ -30,7 +30,7 @@ function HeaderTemplateLogOut({ children }) {
 			<HeaderTemplateBlock>
 				<ul>
 					<li style={{ listStyle:'none', float:'left',marginLeft : "1150px"}}>MYPAGE</li>
-					<li style={{ listStyle:'none', float:'left',marginLeft : "40px"}}><Link to="/">LOGOUT</Link></li>
+					<li style={{ listStyle:'none', float:'left',marginLeft : "40px"}}><Link to="/" style={{textDecoration:'none', color :"#000"}}>LOGOUT</Link></li>
 					<li style={{ listStyle:'none', float:'left',marginLeft : "40px"}}>JOIN</li>
 				</ul>
 

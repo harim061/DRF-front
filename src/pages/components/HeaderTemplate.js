@@ -30,7 +30,7 @@ function HeaderTemplate({ children }) {
 			<HeaderTemplateBlock>
 				<ul>
 					<li style={{ listStyle:'none', float:'left',marginLeft : "1150px"}}>MYPAGE</li>
-					<li style={{ listStyle:'none', float:'left',marginLeft : "40px"}}><Link to="/">LOGIN</Link></li>
+					<li style={{ listStyle:'none', float:'left',marginLeft : "40px"}}><Link to="/"  style={{textDecoration:'none', color :"#000"}}>LOGIN</Link></li>
 					<li style={{ listStyle:'none', float:'left',marginLeft : "40px"}}>JOIN</li>
 				</ul>
 
