@@ -202,6 +202,7 @@ const CommentPage = () => {
 				<CommentTemplate>
 					<CommentHeader />
 					<CommentAdd>
+						
 						<img className="profile" src="./image/profile.svg"></img>
 						<form onSubmit={CommentSubmit}>
 							<input

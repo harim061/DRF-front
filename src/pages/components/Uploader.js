@@ -3,8 +3,9 @@ import { useState } from 'react';
 import { Button } from "@mui/material";
 import axios from 'axios';
 import styled from 'styled-components';
-
+import image from './uploadbtn.png'
 const BtnStyle = styled.div`
+
 .pvbtn {
     background: url('./uploadbtn.png') no-repeat;
     width: 100px;
@@ -78,15 +79,17 @@ const Uploader = () => {
       <div className="img-wrapper">
         <img src={image.preview_URL} />
       </div>
+      
+
     <BtnStyle>
-        <button className='pvbtn' type="primary" variant="contained" onClick={() => inputRef.click()}>
+        <button style={{backgroundImage: `url(${image})`}} className='pvbtn' type="primary" variant="contained" onClick={() => inputRef.click()}>
           Preview
-        </button>    
+        </button>   
     </BtnStyle>
-        <button color="error" variant="contained" onClick={deleteImage}>
+        <button style={{marginTop:"75px",marginLeft:"3px"}} color="error" variant="contained" onClick={deleteImage} >
           Delete
         </button>
-        <button color="success" variant="contained" onClick={sendImageToServer}>
+        <button style={{marginLeft:"5px"}} color="success" variant="contained" onClick={sendImageToServer}>
           Upload
         </button>
 
