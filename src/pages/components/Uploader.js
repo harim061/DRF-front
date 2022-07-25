@@ -1,8 +1,20 @@
 import { useState } from 'react';
-import "./uploader.css";
+// import "./uploader.css";
 import { Button } from "@mui/material";
 import axios from 'axios';
+import styled from 'styled-components';
 
+const BtnStyle = styled.div`
+.pvbtn {
+    background: url('./uploadbtn.png') no-repeat;
+    width: 100px;
+    height: 100px
+    border: none;
+    margin-top: 300px;
+    margin-left: 260px;
+    cursor: pointer;
+}
+`
 const Uploader = () => {
 
   const [image, setImage] = useState({
@@ -66,18 +78,17 @@ const Uploader = () => {
       <div className="img-wrapper">
         <img src={image.preview_URL} />
       </div>
-
-      <div className="upload-button">
-        <Button type="primary" variant="contained" onClick={() => inputRef.click()}>
+    <BtnStyle>
+        <button className='pvbtn' type="primary" variant="contained" onClick={() => inputRef.click()}>
           Preview
-        </Button>
-        <Button color="error" variant="contained" onClick={deleteImage}>
+        </button>    
+    </BtnStyle>
+        <button color="error" variant="contained" onClick={deleteImage}>
           Delete
-        </Button>
-        <Button color="success" variant="contained" onClick={sendImageToServer}>
+        </button>
+        <button color="success" variant="contained" onClick={sendImageToServer}>
           Upload
-        </Button>
-      </div>
+        </button>
 
     </div>
   );

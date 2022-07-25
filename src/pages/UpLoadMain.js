@@ -10,6 +10,7 @@ import HeaderTemplateLogOut from './components/HeaderTemplateLogOut';
 import Footer from './components/Footer';
 import { useNavigate } from 'react-router-dom';
 import Uploader from './components/Uploader';
+import UploadImg from './uploadbtn.png';
 const GlobalStyle = createGlobalStyle`
 body{
 	background: 
@@ -38,15 +39,7 @@ const TitleInput = styled.div`
 		margin-left: 0;
 		margin-top: 8px;
 	}
-	.uploadbtn {
-		background: url('./image/uploadbtn.png') no-repeat;
-		width: 100px;
-		height: 100px;
-		border: none;
-		margin-top: 5%;
-		margin-left: 42%;
-		cursor: pointer;
-	}
+
 	.picturebtn {
 		width: 150px;
 		height: 130px;
@@ -201,7 +194,7 @@ function UpLoadMain() {
 					</form>
 					<div className="upload">
 						<button className="picturebtn"></button>
-						<button className="uploadbtn"></button>
+						{/*<button className="uploadbtn"></button> */}
 					</div>
 					{posts.map((post) => {
 						return (
